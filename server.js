@@ -25,17 +25,18 @@ db.exec(`
   )
 `);
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Sert les fichiers depuis la racine (parce que tout est à plat sur GitHub)
+app.use(express.static(__dirname));
 app.use(express.json());
 
 // Route principale = interface utilisateur
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Route admin
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
 // API pour récupérer toutes les questions (admin)
